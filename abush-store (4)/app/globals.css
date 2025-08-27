@@ -1,0 +1,401 @@
+@import "tailwindcss";
+/* Removed invalid tw-animate-css import causing LightningCSS compilation error */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color tokens with purple integration for Ethiopian ecommerce design */
+  --background: #ffffff; /* White background */
+  --foreground: #1a1a1a; /* Black/charcoal text */
+  --card: #ffffff; /* White cards */
+  --card-foreground: #1a1a1a; /* Black card text */
+  --popover: #ffffff; /* White popover */
+  --popover-foreground: #1a1a1a; /* Black popover text */
+  --primary: #8b5cf6; /* Purple primary for vibrant feel */
+  --primary-foreground: #ffffff; /* White text on primary */
+  --secondary: #f5f5f5; /* Light grey secondary */
+  --secondary-foreground: #1a1a1a; /* Black text on secondary */
+  --muted: #f5f5f5; /* Light grey muted */
+  --muted-foreground: #666666; /* Medium grey muted text */
+  --accent: #a855f7; /* Purple accent for trust/CTA */
+  --accent-foreground: #ffffff; /* White text on accent */
+  --destructive: #ff3b30; /* Red for errors */
+  --destructive-foreground: #ffffff; /* White text on destructive */
+  --border: #e5e5e5; /* Light border */
+  --input: #ffffff; /* White input background */
+  --ring: #a855f7; /* Purple focus ring */
+  --chart-1: #8b5cf6;
+  --chart-2: #ff9500;
+  --chart-3: #1a1a1a;
+  --chart-4: #f5f5f5;
+  --chart-5: #666666;
+  --radius: 0.75rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #8b5cf6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #a855f7;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #a855f7;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-dm-sans: "DM Sans", sans-serif;
+  /* Added purple accent colors for vibrant design */
+  --purple-accent: #8b5cf6;
+  --purple-accent-foreground: #ffffff;
+  --purple-light: #f3f4f6;
+  --purple-gradient-start: #8b5cf6;
+  --purple-gradient-end: #a855f7;
+  /* Orange accent for urgency/sales */
+  --orange-accent: #ff9500;
+  --orange-accent-foreground: #ffffff;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #ffffff;
+  --card: #2a2a2a;
+  --card-foreground: #ffffff;
+  --popover: #2a2a2a;
+  --popover-foreground: #ffffff;
+  --primary: #a855f7;
+  --primary-foreground: #ffffff;
+  --secondary: #3a3a3a;
+  --secondary-foreground: #ffffff;
+  --muted: #3a3a3a;
+  --muted-foreground: #a0a0a0;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --destructive: #ff453a;
+  --destructive-foreground: #ffffff;
+  --border: #3a3a3a;
+  --input: #2a2a2a;
+  --ring: #a855f7;
+  --sidebar: #2a2a2a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #a855f7;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #8b5cf6;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #3a3a3a;
+  --sidebar-ring: #a855f7;
+  --purple-accent: #a855f7;
+  --purple-accent-foreground: #ffffff;
+  --purple-light: #2a2a2a;
+  --purple-gradient-start: #a855f7;
+  --purple-gradient-end: #8b5cf6;
+  --orange-accent: #ff9500;
+  --orange-accent-foreground: #ffffff;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Enhanced neumorphism effects with improved micro-interactions */
+  .neumorphic-card {
+    @apply bg-card;
+    box-shadow: 12px 12px 24px rgba(139, 92, 246, 0.08), -12px -12px 24px rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(168, 85, 247, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neumorphic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 16px 16px 32px rgba(139, 92, 246, 0.12), -16px -16px 32px rgba(255, 255, 255, 0.95);
+  }
+
+  /* Enhanced button interactions with smooth animations */
+  .neumorphic-button {
+    box-shadow: 6px 6px 12px rgba(139, 92, 246, 0.1), -6px -6px 12px rgba(255, 255, 255, 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .neumorphic-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .neumorphic-button:hover::before {
+    left: 100%;
+  }
+
+  .neumorphic-button:hover {
+    box-shadow: 3px 3px 6px rgba(139, 92, 246, 0.15), -3px -3px 6px rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  .neumorphic-button:active {
+    box-shadow: inset 3px 3px 6px rgba(139, 92, 246, 0.1), inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Enhanced input interactions with focus states */
+  .neumorphic-input {
+    box-shadow: inset 6px 6px 12px rgba(139, 92, 246, 0.08), inset -6px -6px 12px rgba(255, 255, 255, 0.9);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+  }
+
+  .neumorphic-input:focus {
+    box-shadow: inset 3px 3px 6px rgba(139, 92, 246, 0.15), inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+    border-color: rgba(168, 85, 247, 0.4);
+    transform: scale(1.01);
+  }
+
+  /* Added smooth link hover effects */
+  .interactive-link {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .interactive-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple-accent), var(--accent));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .interactive-link:hover::after {
+    width: 100%;
+  }
+
+  .interactive-link:hover {
+    color: var(--purple-accent);
+    transform: translateY(-1px);
+  }
+
+  /* Enhanced card hover effects with scale and glow */
+  .product-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(168, 85, 247, 0.02));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .product-card:hover::before {
+    opacity: 1;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Added ripple effect for buttons */
+  .ripple-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .ripple-button:active::after {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Enhanced badge animations */
+  .animated-badge {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+      transform: scale(1.05);
+    }
+  }
+
+  /* Smooth icon hover effects */
+  .icon-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .icon-hover:hover {
+    transform: scale(1.2) rotate(5deg);
+    color: var(--purple-accent);
+  }
+
+  /* Enhanced category card interactions */
+  .category-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .category-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2);
+  }
+
+  .category-card:hover .category-icon {
+    transform: scale(1.2) rotate(10deg);
+  }
+
+  .category-icon {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Added purple gradient backgrounds */
+  .hero-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+  }
+
+  .purple-gradient {
+    background: linear-gradient(135deg, var(--purple-gradient-start) 0%, var(--purple-gradient-end) 100%);
+  }
+
+  .purple-gradient-subtle {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+  }
+
+  /* Enhanced glassmorphism styles with purple tints */
+  .glassmorphism-navbar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+  }
+
+  .dark .glassmorphism-navbar {
+    background: rgba(42, 42, 42, 0.85);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Added purple accent utilities */
+  .bg-purple-accent {
+    background-color: var(--purple-accent);
+  }
+
+  .text-purple-accent {
+    color: var(--purple-accent);
+  }
+
+  .bg-orange-accent {
+    background-color: var(--orange-accent);
+  }
+
+  .text-orange-accent {
+    color: var(--orange-accent);
+  }
+
+  /* Added floating purple elements */
+  .floating-purple-element {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
+  }
+
+  .font-space-grotesk {
+    font-family: var(--font-space-grotesk), sans-serif;
+  }
+
+  .font-dm-sans {
+    font-family: var(--font-dm-sans), sans-serif;
+  }
+}
+
+@theme inline {
+  /* Updated font configuration for custom fonts */
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-space-grotesk);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-purple-accent: var(--purple-accent);
+  --color-purple-accent-foreground: var(--purple-accent-foreground);
+  --color-orange-accent: var(--orange-accent);
+  --color-orange-accent-foreground: var(--orange-accent-foreground);
+}
